@@ -1,0 +1,19 @@
+.authnav {
+  margin-right: 30px;
+}
+.authnav__link {
+  text-decoration: none;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .authnav__link {
+    font-size: 15px;
+    padding: 5px;
+  }
+  .authnav {
+    margin-right: 10px;
+  }
+}

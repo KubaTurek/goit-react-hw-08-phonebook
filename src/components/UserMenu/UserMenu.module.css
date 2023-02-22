@@ -1,0 +1,22 @@
+.loggedInNav {display: flex; 
+align-items: center; 
+gap: 20px; 
+padding-right: 15px;}
+
+.loggedInNav__link {text-decoration: none; 
+cursor: pointer;
+font-weight: bold}
+
+.loggedInNav__button{
+width: 80px;
+margin-left: auto;
+margin-right: auto;
+cursor: pointer;
+padding: 5px;
+border-radius: 4px; 
+background-color: rgb(225, 128, 128);
+box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;}
+
+.loggedInNav__button:hover {
+    background-color: rgba(247, 244, 244, 0.929);
+}
