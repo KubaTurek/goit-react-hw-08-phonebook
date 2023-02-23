@@ -3,18 +3,19 @@ import { logIn } from 'Redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
-
   const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
+  const handleLogin = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    dispatch(logIn({
-      email: form.elements.email.value,
-      password: form.elements.password.value
-    }))
-    form.reset()
-  }
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
 
   return (
     <div className={css.login}>

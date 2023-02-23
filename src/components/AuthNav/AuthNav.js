@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
 import css from './AuthNav.module.css';
 
 const StyledLink = styled(NavLink)`
@@ -15,10 +15,10 @@ export const AuthNav = () => {
     <div className={css.authnav}>
       <StyledLink className={css.authnav__link} to="/register">
         Register
-      </StyledLink >
+      </StyledLink>
       <StyledLink className={css.authnav__link} to="/login">
         Log In
-      </StyledLink >
+      </StyledLink>
     </div>
   );
 };

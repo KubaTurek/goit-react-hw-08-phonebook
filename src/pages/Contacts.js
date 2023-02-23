@@ -6,13 +6,11 @@ import css from './contacts.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'Redux/auth/selectors';
 
-
 const Contacts = () => {
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-    return (isLoggedIn ?
-        <div className={css.contacts}>
+  return isLoggedIn ? (
+    <div className={css.contacts}>
       <Section title="Phonebook">
         <ContactForm />
       </Section>
@@ -20,8 +18,10 @@ const Contacts = () => {
         <Filter />
         <ContactList />
       </Section>
-    </div> : <p>You need to login first</p>
-    )
-}
+    </div>
+  ) : (
+    <p>You need to login first</p>
+  );
+};
 
 export default Contacts;

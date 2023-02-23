@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../Redux/operations.js';
+import { editContact } from '../../Redux/operations.js';
 import { useEffect, useState } from 'react';
 import editIcon from './../../images/edit.png';
 import { selectFilteredContacts } from './../../Redux/selectors';
@@ -9,8 +10,16 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contactToEdit, setContactToEdit] = useState([]);
 
-  const handleOpen = () => setIsModalOpen(true);
+  const handleOpen = contact => {
+    setContactToEdit({
+      id: contact.id,
+      name: contact.name,
+      number: contact.number,
+    });
+    setIsModalOpen(true);
+  };
   const handleClose = () => setIsModalOpen(false);
 
   useEffect(() => {
@@ -21,36 +30,57 @@ const ContactList = () => {
     dispatch(deleteContact(id));
   };
 
+  const refreshContact = e => {
+    e.preventDefault();
+    const name = e.currentTarget.name.value;
+    const number = e.currentTarget.number.value;
+    const editedContact = { id: contactToEdit.id, name, number };
+    dispatch(editContact(editedContact));
+    handleClose();
+  };
+
   return (
     <>
       {isModalOpen && (
         <div
           className={css.overlay}
           data-name="overlay"
-          visible={isModalOpen}
+          visible={isModalOpen.toString()}
           onClick={e => {
             if (e.target.dataset.name === 'overlay') {
               handleClose();
             }
           }}
         >
-          <div className={css.modal} visible={isModalOpen}>
+          <div className={css.modal} visible={isModalOpen.toString()}>
             <p className={css.label}>
               <b>Edit name</b>
             </p>
-            <input type="text" name="name" className={css.input} />
-            <p className={css.label}>
-              <b>Edit number</b>
-            </p>
-            <input type="tel" name="number" className={css.input} />
-            <button
-              type="button"
-              name="close-button"
-              className={css.close__button}
-              onClick={() => handleClose()}
-            >
-              Save
-            </button>
+            <form onSubmit={e => refreshContact(e)}>
+              <input
+                type="text"
+                name="name"
+                className={css.input}
+                defaultValue={contactToEdit.name}
+              />
+              <p className={css.label}>
+                <b>Edit number</b>
+              </p>
+              <input
+                type="tel"
+                name="number"
+                className={css.input}
+                defaultValue={contactToEdit.number}
+              />
+
+              <button
+                type="submit"
+                name="close-button"
+                className={css.close__button}
+              >
+                Save
+              </button>
+            </form>
           </div>
         </div>
       )}
@@ -70,7 +100,7 @@ const ContactList = () => {
                       className={css.edit}
                       alt="edit"
                       width="16px"
-                      onClick={() => handleOpen()}
+                      onClick={() => handleOpen(contact)}
                     />
                     <button
                       type="button"

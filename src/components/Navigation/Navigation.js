@@ -11,9 +11,14 @@ const StyledLink = styled(NavLink)`
 `;
 
 export const Navigation = () => {
-
-    return (<div className={css.navigation}>
-        <StyledLink className={css.navigation__link} to="/">Home</StyledLink>
-        <StyledLink className={css.navigation__link} to="/Contacts">Contacts</StyledLink>
-    </div>)
-}
+  return (
+    <div className={css.navigation}>
+      <StyledLink className={css.navigation__link} to="/">
+        Home
+      </StyledLink>
+      <StyledLink className={css.navigation__link} to="/Contacts">
+        Contacts
+      </StyledLink>
+    </div>
+  );
+};
