@@ -16,7 +16,7 @@ export const Navigation = () => {
       <StyledLink className={css.navigation__link} to="/">
         Home
       </StyledLink>
-      <StyledLink className={css.navigation__link} to="/Contacts">
+      <StyledLink className={css.navigation__link} to="/contacts">
         Contacts
       </StyledLink>
     </div>
